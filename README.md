@@ -1,79 +1,184 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# DynProtMobile
 
-# Getting Started
+[![React Native](https://img.shields.io/badge/React_Native-0.72.17-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactnative.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Platforms](https://img.shields.io/badge/Platforms-iOS%20%7C%20Android-4BC51D?style=for-the-badge)](https://reactnative.dev/)
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+DynProtMobile est une application mobile de suivi nutritionnel axée sur l'apport en protéines, offrant une expérience utilisateur personnalisée avec thème clair/sombre et support multilingue.
 
-## Step 1: Start the Metro Server
+## ✨ Fonctionnalités
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- **Suivi nutritionnel** : Enregistrement et suivi de l'apport en protéines
+- **Tableau de bord** : Visualisation des progrès avec graphiques interactifs
+- **Chat intelligent** : Assistant vocal intégré avec synthèse vocale
+- **Profil personnalisable** : Objectifs nutritionnels et préférences utilisateur
+- **Thème clair/sombre** : Interface adaptative selon les préférences utilisateur
+- **Multilingue** : Support du français et de l'anglais
+- **Sécurisé** : Authentification utilisateur et protection des données
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## 📱 Captures d'écran
+
+*À ajouter : captures d'écran de l'application*
+
+## 🚀 Installation
+
+### Prérequis
+
+- Node.js (v16 ou supérieur)
+- npm ou Yarn
+- React Native CLI
+- Xcode (pour iOS) ou Android Studio (pour Android)
+- CocoaPods (pour iOS)
+
+### Configuration initiale
+
+1. **Cloner le dépôt**
+   ```bash
+   git clone https://github.com/votre-utilisateur/DynProtMobile.git
+   cd DynProtMobile
+   ```
+
+2. **Installer les dépendances**
+   ```bash
+   # Installer les dépendances principales
+   npm install
+   
+   # Installer les pods iOS (uniquement pour macOS)
+   cd ios && pod install && cd ..
+   ```
+
+3. **Configurer les variables d'environnement**
+   Créez un fichier `.env` à la racine du projet avec les variables nécessaires :
+   ```env
+   API_URL=votre_url_d_api
+   # Autres variables d'environnement
+   ```
+
+## 🏃‍♂️ Lancement
+
+### Développement
 
 ```bash
-# using npm
+# Démarrer le serveur Metro
 npm start
 
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
+# Lancer sur iOS (macOS uniquement)
 npm run ios
 
-# OR using Yarn
-yarn ios
+# Lancer sur Android
+npm run android
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### Production
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+```bash
+# Construire pour iOS
+cd ios && xcodebuild -workspace DynProtMobile.xcworkspace -scheme DynProtMobile -sdk iphoneos -configuration Release
 
-## Step 3: Modifying your App
+# Construire pour Android
+cd android && ./gradlew assembleRelease
+```
 
-Now that you have successfully run the app, let's modify it.
+## 🛠 Architecture
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+L'application est construite avec une architecture moderne utilisant :
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+- **React Native** pour le développement cross-platform
+- **TypeScript** pour un code plus sûr et plus maintenable
+- **React Navigation** pour la navigation entre les écrans
+- **React Native Reanimated** pour des animations fluides
+- **React Native Voice** pour la reconnaissance vocale
+- **React Native Sound** pour la lecture audio
+- **React Native Chart Kit** pour les visualisations de données
 
-## Congratulations! :tada:
+## 🌐 Internationalisation
 
-You've successfully run and modified your React Native App. :partying_face:
+L'application prend en charge plusieurs langues via le système d'internationalisation intégré. Les fichiers de traduction se trouvent dans le dossier `src/translations/`.
 
-### Now what?
+## 🎨 Thèmes
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+L'application propose deux thèmes : clair et sombre. La sélection du thème est gérée via le `SettingsContext`.
 
-# Troubleshooting
+## 🤖 Fonctionnalités avancées
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+### Reconnaissance vocale
 
-# Learn More
+L'application utilise `react-native-voice` pour permettre la saisie vocale des repas et des notes.
 
-To learn more about React Native, take a look at the following resources:
+### Synthèse vocale
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+La synthèse vocale est fournie par l'API OpenAI pour une expérience utilisateur plus naturelle.
+
+### Sécurité
+
+- Authentification utilisateur sécurisée
+- Stockage sécurisé des données sensibles
+- Protection contre les attaques CSRF et XSS
+
+## 📊 Base de données
+
+L'application utilise une base de données PostgreSQL pour le stockage des données. Un fichier Docker Compose est fourni pour faciliter le déploiement local.
+
+```bash
+# Démarrer la base de données PostgreSQL
+docker-compose up -d
+```
+
+## 🔍 Dépannage
+
+### Problèmes courants
+
+#### Problèmes de reconnaissance vocale
+
+Assurez-vous d'avoir accordé les autorisations nécessaires dans les paramètres de l'appareil.
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues ! Voici comment procéder :
+
+1. Forkez le projet
+2. Créez votre branche de fonctionnalité (`git checkout -b feature/AmazingFeature`)
+3. Committez vos changements (`git commit -m 'Ajouter une fonctionnalité incroyable'`)
+4. Poussez vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrez une Pull Request
+
+## 📄 Licence
+
+Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## 🙏 Remerciements
+
+- Tous les contributeurs qui ont participé au projet
+- La communauté React Native pour son soutien continu
+- Les mainteneurs des bibliothèques open source utilisées
+
+## 📚 Documentation complémentaire
+
+- [Documentation React Native](https://reactnative.dev/docs/getting-started)
+- [Documentation React Navigation](https://reactnavigation.org/)
+- [Documentation TypeScript](https://www.typescriptlang.org/docs/)
+
+## 📞 Support
+
+Pour toute question ou problème, veuillez ouvrir une [issue](https://github.com/votre-utilisateur/DynProtMobile/issues).
+
+## 📅 Historique des versions
+
+Consultez les [releases](https://github.com/votre-utilisateur/DynProtMobile/releases) pour un historique des modifications.
+
+## 📝 Notes de version
+
+### Version 1.0.0 (2024-06-20)
+- Version initiale de DynProtMobile
+- Suivi nutritionnel et tableau de bord
+- Chat intelligent avec reconnaissance vocale
+- Support multilingue (français/anglais)
+- Thèmes clair/sombre
+
+## 🔍 Dépannage avancé
+
+Si vous rencontrez des problèmes, consultez les ressources suivantes :
+
+- [Guide de dépannage React Native](https://reactnative.dev/docs/troubleshooting)
+- [Documentation React Native](https://reactnative.dev/docs/getting-started)
+- [Forum d'aide React Native](https://github.com/facebook/react-native/discussions)
