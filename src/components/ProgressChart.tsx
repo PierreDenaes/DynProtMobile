@@ -20,7 +20,8 @@ interface ProgressChartProps {
   }
 }
 
-const ProgressChart: React.FC<ProgressChartProps> = ({ data = [] }) => {
+const ProgressChart: React.FC<ProgressChartProps> = ({ data = [], theme }) => {
+  const styles = getStyles(theme);
   const screenWidth = Dimensions.get("window").width
 
   if (!data || data.length === 0) {
@@ -74,22 +75,29 @@ const ProgressChart: React.FC<ProgressChartProps> = ({ data = [] }) => {
   }
 
   const chartConfig = {
-    backgroundColor: "#ffffff",
-    backgroundGradientFrom: "#ffffff",
-    backgroundGradientTo: "#ffffff",
+    backgroundColor: theme.card,
+    backgroundGradientFrom: theme.card,
+    backgroundGradientTo: theme.card,
     decimalPlaces: 0,
-    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-    labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+    color: (opacity = 1) => `rgba(${theme.text === '#000000' ? '0, 0, 0' : '255, 255, 255'}, ${opacity})`,
+    labelColor: (opacity = 1) => `rgba(${theme.text === '#000000' ? '0, 0, 0' : '255, 255, 255'}, ${opacity})`,
     style: {
       borderRadius: 16,
     },
     propsForDots: {
       r: "4",
       strokeWidth: "2",
-      stroke: "#2563eb",
+      stroke: theme.primary,
     },
     propsForLabels: {
       fontSize: 12,
+      fill: theme.text,
+    },
+    propsForVerticalLabels: {
+      fill: theme.text,
+    },
+    propsForHorizontalLabels: {
+      fill: theme.text,
     },
   }
 
@@ -108,11 +116,18 @@ const ProgressChart: React.FC<ProgressChartProps> = ({ data = [] }) => {
         bezier
         style={styles.chart}
         withInnerLines={false}
-        withOuterLines={true}
+        withOuterLines={false}
         withHorizontalLabels={true}
         withVerticalLabels={true}
         yAxisSuffix="g"
         segments={4}
+        fromZero
+        formatYLabel={(value) => `${Math.round(Number(value))}`}
+        xLabelsOffset={-10}
+        yLabelsOffset={5}
+        withShadow={false}
+        withDots={true}
+        withVerticalLines={false}
       />
 
       {/* Stats */}
@@ -134,9 +149,13 @@ const ProgressChart: React.FC<ProgressChartProps> = ({ data = [] }) => {
   )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme: any) => StyleSheet.create({
   container: {
     alignItems: "center",
+    backgroundColor: theme.card,
+    borderRadius: 16,
+    padding: 16,
+    marginBottom: 16,
   },
   emptyContainer: {
     alignItems: "center",
@@ -148,7 +167,9 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 16,
-    color: "#6b7280",
+    color: theme.textMuted,
+    textAlign: 'center',
+    paddingHorizontal: 16,
   },
   chart: {
     marginVertical: 8,
@@ -156,26 +177,28 @@ const styles = StyleSheet.create({
   },
   statsContainer: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     width: "100%",
     marginTop: 16,
     paddingTop: 16,
     borderTopWidth: 1,
-    borderTopColor: "#f3f4f6",
+    borderTopColor: theme.border,
   },
   statItem: {
     alignItems: "center",
+    flex: 1,
   },
   statValue: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
-    color: "#1f2937",
+    color: theme.text,
+    marginBottom: 4,
   },
   statLabel: {
     fontSize: 12,
-    color: "#6b7280",
-    marginTop: 4,
+    color: theme.textMuted,
+    textAlign: 'center',
   },
-})
+});
 
 export default ProgressChart

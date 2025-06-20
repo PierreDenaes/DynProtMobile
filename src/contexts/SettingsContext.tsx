@@ -15,6 +15,7 @@ type TranslationKeys =
   | 'nav.chat'
   | 'nav.profile'
   | 'profile.title'
+  | 'profile.subtitle'
   | 'profile.settings'
   | 'profile.personalInfo'
   | 'profile.personalizedTips'
@@ -113,6 +114,7 @@ const translations: Translations = {
     'nav.profile': 'Profil',
     // Profile screen
     'profile.title': 'Mon Profil',
+    'profile.subtitle': 'Gérez vos informations personnelles',
     'profile.settings': 'Paramètres',
     'profile.personalInfo': 'Informations personnelles',
     'profile.personalizedTips': 'Conseils personnalisés',
@@ -207,6 +209,7 @@ const translations: Translations = {
     'nav.profile': 'Profile',
     // Profile screen
     'profile.title': 'My Profile',
+    'profile.subtitle': 'Manage your personal information',
     'profile.settings': 'Settings',
     'profile.personalInfo': 'Personal Information',
     'profile.personalizedTips': 'Personalized Tips',
