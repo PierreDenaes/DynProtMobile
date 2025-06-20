@@ -9,8 +9,10 @@ DynProtMobile est une application mobile de suivi nutritionnel axée sur l'appor
 ## ✨ Fonctionnalités
 
 - **Suivi nutritionnel** : Enregistrement et suivi de l'apport en protéines
+- **Analyse d'images** : Prenez en photo vos repas pour une analyse nutritionnelle automatique
+- **Reconnaissance vocale** : Enregistrez vos repas par la voix pour une expérience mains libres
 - **Tableau de bord** : Visualisation des progrès avec graphiques interactifs
-- **Chat intelligent** : Assistant vocal intégré avec synthèse vocale
+- **Chat intelligent** : Assistant vocal intégré avec synthèse vocale et support des images
 - **Profil personnalisable** : Objectifs nutritionnels et préférences utilisateur
 - **Thème clair/sombre** : Interface adaptative selon les préférences utilisateur
 - **Multilingue** : Support du français et de l'anglais
@@ -100,6 +102,15 @@ L'application prend en charge plusieurs langues via le système d'internationali
 L'application propose deux thèmes : clair et sombre. La sélection du thème est gérée via le `SettingsContext`.
 
 ## 🤖 Fonctionnalités avancées
+
+### Analyse d'image des repas
+
+L'application permet d'analyser les photos de vos repas pour en extraire les informations nutritionnelles :
+
+- Prenez une photo ou sélectionnez une image depuis votre galerie
+- L'application envoie l'image au serveur pour analyse
+- L'IA identifie les aliments et calcule leur teneur en protéines
+- Les résultats sont affichés dans le chat avec des suggestions personnalisées
 
 ### Reconnaissance vocale
 
