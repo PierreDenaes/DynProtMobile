@@ -179,16 +179,55 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const updateUserGoal = async (newGoal: number): Promise<void> => {
     try {
-      await api.put(`/users/goal/${state.user?.user_id}`, {
+      if (!state.user?.user_id) {
+        throw new Error("User ID is missing")
+      }
+
+      console.log(`Updating protein goal to ${newGoal}g for user ${state.user.user_id}`)
+      
+      const response = await api.put(`/users/goal/${state.user.user_id}`, {
         daily_protein_goal: newGoal,
       })
 
-      const updatedUser = { ...state.user!, daily_protein_goal: newGoal }
+      console.log('Update goal response:', response)
+
+      if (!response) {
+        throw new Error('No response from server')
+      }
+
+      if (response.error) {
+        throw new Error(response.details || response.error || 'Failed to update protein goal')
+      }
+
+      const updatedUser = { 
+        ...state.user, 
+        daily_protein_goal: newGoal 
+      }
+      
       dispatch({ type: "SET_USER", payload: updatedUser })
       await AsyncStorage.setItem("dynprot_user", JSON.stringify(updatedUser))
-    } catch (error) {
-      console.error("Error updating goal:", error)
-      throw error
+      console.log('Successfully updated protein goal')
+    } catch (error: any) {
+      console.error("Error updating protein goal:", error)
+      
+      // Extraire le message d'erreur de différentes façons selon la structure de l'erreur
+      let errorMessage = 'Une erreur est survenue lors de la mise à jour de l\'objectif de protéines'
+      
+      if (error.response?.data?.details) {
+        errorMessage = error.response.data.details
+      } else if (error.response?.data?.error) {
+        errorMessage = error.response.data.error
+      } else if (error.message) {
+        errorMessage = error.message
+      }
+      
+      console.log('Error details:', { 
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status
+      })
+      
+      throw new Error(errorMessage)
     }
   }
 
